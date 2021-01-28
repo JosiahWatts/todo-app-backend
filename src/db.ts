@@ -3,18 +3,27 @@ import { createConnection, Connection } from 'typeorm';
 
 class Database {
     
-    public static async createConnection() {
-        const connection = await createConnection({
+    private connection: Connection;
+
+    constructor() {}
+    
+    public async createConnection() {
+        this.connection = await createConnection({
             type: 'sqlite',
+            entities: ["src/models/*.ts"],
             database: this.getDatabasePath()
         });
     
         console.log('Sqlite Database Connected!');
     
-        return connection;
+        return this.connection;
     }
 
-    public static getDatabasePath() {
+    public getConnection() {
+        return this.connection;
+    }
+
+    public getDatabasePath() {
         return path.resolve(__dirname, 'db/database.sqlite');
     }
 }
