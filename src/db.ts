@@ -8,13 +8,16 @@ class Database {
     constructor() {}
     
     public async createConnection() {
+        // set synchronize to true in order to create
+        // the tables on application load.
         this.connection = await createConnection({
             type: 'sqlite',
+            synchronize: false,
             entities: ["src/models/*.ts"],
             database: this.getDatabasePath()
         });
     
-        console.log('Sqlite Database Connected!');
+        console.log('Hey! Looks like we have a database');
     
         return this.connection;
     }

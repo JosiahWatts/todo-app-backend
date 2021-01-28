@@ -1,6 +1,5 @@
 import { ITodoRespository } from "../interfaces/ITodoRepository";
 import { Todo } from "../models/Todo";
-import { Connection, getConnection, Repository } from 'typeorm';
 import Database from "../db";
 
 export class TodoRepository implements ITodoRespository {
